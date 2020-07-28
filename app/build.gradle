@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'//kapt 插件
+
+apply plugin: 'stringfog'
+
+stringfog {
+    // 这是加解密key，可以自由定义。
+    key 'Hello World'
+    // 开关
+    enable true
+    // 加解密库的实现类路径，需和上面配置的加解密算法库一致。
+    implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
+    // 指定需加密的代码包路径，可配置多个，未指定将默认全部加密。
+    fogPackages = []
+}
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "30.0.0"
+
+    defaultConfig {
+        applicationId "com.dmx.databinding"
+        minSdkVersion 23
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    //设置兼容性
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            //开启混淆
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    //开启 dataBinding
+    buildFeatures{
+        dataBinding=true
+    }
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //标题栏
+    implementation 'com.hjq:titlebar:6.5'
+    //toast
+    implementation 'com.hjq:toast:8.6'
+    //权限
+    implementation 'com.hjq:xxpermissions:6.5'
+
+    //toast 工具类
+    implementation 'com.hjq:toast:8.6'
+
+    //logcat日志 (打包会自动忽略 debugImplementation 库)
+    debugImplementation 'com.hjq:logcat:8.2'
+
+    //Base RecyclerView 帮助类
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+    //http
+    implementation("com.squareup.okhttp3:okhttp:4.8.0")
+
+    //kotlin协程
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
+
+    //工具类
+    implementation 'cn.hutool:hutool-all:5.3.7'
+
+    //打包后的字符串 加密混淆
+    implementation 'com.github.megatronking.stringfog:xor:1.1.0'
+
+    //ec helper
+    implementation project(':ec')
+
+}
+
