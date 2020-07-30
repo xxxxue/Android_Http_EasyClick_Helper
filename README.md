@@ -6,7 +6,7 @@
 
 # 版本号
 
-**EasyClick :    5.0.0.RC10**
+**EasyClick :    5.0.0.RC12**
 
 **Android Studio:  4.0**
 
