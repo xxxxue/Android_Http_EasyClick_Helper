@@ -2,7 +2,7 @@
 
 具体的代码 和 测试代码 在 "ec" 文件夹中
 
-[EcHelper.kt](https://github.com/xxxxue/Android_Http_EasyClick_Helper/blob/master/ec/src/main/java/com/dmx/ec/EcHelper.kt)
+[点击进入ec目录](https://github.com/xxxxue/Android_Http_EasyClick_Helper/tree/master/ec/src/main/java/com/dmx/ec)
 
 # 版本号
 
